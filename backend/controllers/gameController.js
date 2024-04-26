@@ -4,7 +4,6 @@ const catchAsync = require("../helpers/catchAsync");
 
 const getGame = async (req, res) => {
   gameService.startGame(req, res);
-  console.log("credits start-game: " + req.session.credits);
 };
 
 const roll = catchAsync(async (req, res) => {
@@ -22,9 +21,8 @@ const roll = catchAsync(async (req, res) => {
 });
 
 const cashOut = catchAsync(async (req, res) => {
-  console.log("credits cahsOut: " + req.session.credits);
-  // Logique de récolte de gain
-  res.status(StatusCodes.OK).json({ message: "Game cashed out" });
+  const credits = gameService.cashOut(req, res);
+  res.status(StatusCodes.OK).json({ credits });
 });
 
 // ****** Export des Controllers ******************/

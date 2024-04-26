@@ -32,11 +32,32 @@ const roll = async (req, res) => {
     if (req.session.credits < 1) {
       throw new Error("Not enough credits");
     }
+
     const result = await generateRandomRollResult();
     req.session.credits -= 1;
 
     let creditsWon = 0;
-    if (result.every((symbol) => symbol === result[0])) {
+
+    if (req.session.credits >= 40 && req.session.credits < 60) {
+      const isWining = result.every((symbol) => symbol === result[0]);
+      if (isWining) {
+        const shouldReroll = Math.random() >= 0.7;
+        if (shouldReroll) {
+          result = await generateRandomRollResult();
+        }
+      }
+    } else if (req.session.credits >= 60) {
+      const isWining = result.every((symbol) => symbol === result[0]);
+      if (isWining) {
+        const shouldReroll = Math.random() >= 0.4;
+        if (shouldReroll) {
+          result = await generateRandomRollResult();
+        }
+      }
+    }
+
+    const isWining = result.every((symbol) => symbol === result[0]);
+    if (isWining) {
       const symbol = result[0];
       creditsWon = symbols[symbol];
       req.session.credits += creditsWon;
@@ -44,14 +65,16 @@ const roll = async (req, res) => {
 
     const { credits } = req.session;
 
-    res.status(StatusCodes.OK).json({ result, credits });
+    res.status(StatusCodes.OK).json({ result, credits, creditsWon });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 
-const cashOut = async () => {
-  // Logique pour retirer les crédits
+const cashOut = async (req, res) => {
+  credits = req.session.credits;
+  // TODO logique pour transfer les crédits dans la base de données de l'utilisateur
+  res.json({ credits });
 };
 
 module.exports = {
