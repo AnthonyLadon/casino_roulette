@@ -1,15 +1,13 @@
-const initialCredits = process.env.INITIAL_USER_CREDIT;
+const initialCredits = parseInt(process.env.INITIAL_USER_CREDIT);
+const { StatusCodes } = require("http-status-codes");
 
-const startGame = async (req, res) => {
-  try {
-    if (!req.session.hasOwnProperty("credits")) {
-      req.session.credits = initialCredits;
-    }
-    const credits = req.session.credits;
-    res.json({ credits });
-  } catch (error) {
-    res.json({ message: error.message });
+const startGame = (req, res) => {
+  if (req.session.credits < 10 || !req.session.credits) {
+    req.session.credits = initialCredits;
   }
+  const credits = req.session.credits;
+  req.session.save();
+  res.json({ credits });
 };
 
 const symbols = {
@@ -31,17 +29,22 @@ const generateRandomRollResult = () => {
 
 const roll = async (req, res) => {
   try {
-    const credits = req.body.credits;
-    if (credits > req.session.credits) {
+    if (req.session.credits < 1) {
       throw new Error("Not enough credits");
     }
-
+    const result = await generateRandomRollResult();
     req.session.credits -= 1;
-    const result = generateRandomRollResult();
 
-    // Logique pour calculer les gains et les crédits
+    let creditsWon = 0;
+    if (result.every((symbol) => symbol === result[0])) {
+      const symbol = result[0];
+      creditsWon = symbols[symbol];
+      req.session.credits += creditsWon;
+    }
 
-    res.status(StatusCodes.OK).json({ result });
+    const { credits } = req.session;
+
+    res.status(StatusCodes.OK).json({ result, credits });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }

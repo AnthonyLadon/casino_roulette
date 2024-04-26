@@ -1,7 +1,7 @@
 // test/controllers/gameController.test.js
 const { expect } = require("chai");
-const gameController = require("../../controllers/gameController");
-const gameService = require("../../services/gameService");
+const gameController = require("../controllers/gameController");
+const gameService = require("../services/gameService");
 
 describe("gameController", () => {
   describe("getGame", () => {
@@ -25,7 +25,7 @@ describe("gameController", () => {
       };
 
       // Appel de la fonction du contrôleur
-      await getGame(req, res);
+      await gameController.getGame(req, res);
     });
   });
 });

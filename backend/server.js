@@ -19,14 +19,13 @@ app.use(
     secret: sessionSecret,
     resave: false, // doesn't save session if unmodified
     saveUninitialized: false, // doesn't save empty sessions
-    cookie: { secure: false }, //! secure: true for https -> disabled in dev environment
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 }, //! secure: true for https -> disabled in dev environment
   })
 );
 
-app.get("/test", (request, response) => response.json({ test: "ok" }));
 app.get("/start-game", gameController.getGame);
-// app.use("/roll", gameRoutes);
-// app.use("/cash-out", gameRoutes);
+app.get("/roll", gameController.roll);
+app.get("/cash-out", gameController.cashOut);
 
 app.use((req, res) => {
   res
