@@ -1,0 +1,19 @@
+// Wining animation
+@keyframes win-blink {
+  from {
+    border-color: rgba(249, 249, 171, 0.729);
+  }
+  to {
+    border-color: $secondary-color;
+  }
+}
+
+// rotation of the rolls
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

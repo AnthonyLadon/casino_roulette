@@ -1,3 +1,6 @@
+@import "../../../sass/variables";
+@import "../../../sass/animations";
+
 .wrapper {
   margin: 0 auto;
   max-width: 1400px;
@@ -21,6 +24,7 @@
     border: 2px solid rgba(255, 255, 255, 0.474);
     p {
       color: rgb(249, 249, 171);
+      text-decoration: underline;
     }
     span {
       font-weight: 600;
@@ -31,7 +35,7 @@
     text-align: center;
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: rgb(249, 249, 171);
+    color: $primary-color;
     text-shadow: 2px 2px 20px rgb(213, 144, 144);
   }
   .wallet {
@@ -45,12 +49,14 @@
     border: 2px solid rgba(255, 255, 255, 0.474);
     p {
       color: rgb(249, 249, 171);
+      text-align: center;
+      text-decoration: underline;
+      margin: 1rem;
     }
     span {
       font-weight: 600;
     }
     button {
-      margin-top: 1rem;
       padding: 0.5rem 1rem;
       font-size: 1.2rem;
       border-radius: 15px;
@@ -97,12 +103,19 @@
       max-width: 9rem;
       border: solid 2px #938e8e;
       border-radius: 10px;
-      background-color: rgba(203, 197, 86, 0.667);
+      background-color: $primary-color;
       padding: 1rem;
       margin: auto;
       img {
         max-width: 100%;
         height: auto;
+        filter: contrast(0.8);
+      }
+      &.spin {
+        img {
+          animation: spin 100ms linear infinite;
+        }
+        filter: blur(2px);
       }
     }
   }
@@ -115,9 +128,8 @@
     color: rgba(249, 249, 171, 0.91);
     font-weight: 600;
     border: 3px solid #ccccccb9;
-    background-color: #e14c4c;
+    background-color: $secondary-color;
     border-radius: 50px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, box-shadow 0.2s;
     transform: translateY(3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.619);
@@ -127,17 +139,8 @@
     &:active {
       transform: translateY(0);
       box-shadow: none;
+      transition: 150ms ease-in-out;
     }
-  }
-}
-
-/* Animation */
-@keyframes win-blink {
-  from {
-    border-color: rgba(249, 249, 171, 0.729);
-  }
-  to {
-    border-color: #ff450c7b;
   }
 }
 
@@ -147,7 +150,7 @@
   color: rgba(249, 249, 171, 0.847);
   font-weight: 600;
   padding: 1rem;
-  background-color: #8d2626;
+  background-color: $secondary-color;
   border-radius: 50px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   &:hover {
