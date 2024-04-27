@@ -65,7 +65,7 @@ const roll = async (req, res) => {
 
     const { credits } = req.session;
 
-    res.status(StatusCodes.OK).json({ result, credits, creditsWon });
+    res.status(StatusCodes.OK).json({ result, credits, creditsWon, isWining });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }

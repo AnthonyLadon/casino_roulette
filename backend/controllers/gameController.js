@@ -2,12 +2,15 @@ const { StatusCodes } = require("http-status-codes");
 const gameService = require("../services/gameService");
 const catchAsync = require("../helpers/catchAsync");
 
+const getSessionData = (req, res) => {
+  res.json(req.session);
+};
+
 const getGame = async (req, res) => {
   gameService.startGame(req, res);
 };
 
 const roll = catchAsync(async (req, res) => {
-  console.log("credits roll: " + req.session.credits);
   try {
     const credits = req.session.credits;
     if (!credits) {
@@ -28,6 +31,7 @@ const cashOut = catchAsync(async (req, res) => {
 // ****** Export des Controllers ******************/
 
 module.exports = {
+  getSessionData,
   getGame,
   roll,
   cashOut,

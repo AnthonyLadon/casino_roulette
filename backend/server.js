@@ -11,7 +11,8 @@ const app = express();
 const PORT = process.env.PORT;
 const sessionSecret = process.env.SECRET_KEY;
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:4200", credentials: true }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
@@ -23,6 +24,7 @@ app.use(
   })
 );
 
+app.get("/session-data", gameController.getSessionData);
 app.get("/start-game", gameController.getGame);
 app.get("/roll", gameController.roll);
 app.get("/cash-out", gameController.cashOut);
