@@ -1,19 +1,28 @@
 <div class="wrapper">
-  <h1>Welcome to the Casino!</h1>
-
   <div class="game-dashboard">
-    <div>Credits: 10 chips</div>
-    <button>Start a new game</button>
-    <button>Cash out</button>
+    <div class="credits">
+      <p>Crédits: <span>10</span></p>
+    </div>
+    <h1>Welcome to the Casino!</h1>
+    <div class="wallet">
+      <p>My Wallet: <span>12 $</span></p>
+      <button>Cash Out $</button>
+    </div>
   </div>
 
   <div class="slot-machine-container">
     <div class="rolls">
-      <div>Roll</div>
-      <div>Roll</div>
-      <div>Roll</div>
+      <div class="roll">
+        <img [src]="'assets/images/cherry.svg'" alt="" />
+      </div>
+      <div class="roll">
+        <img [src]="'assets/images/orange.svg'" alt="" />
+      </div>
+      <div class="roll">
+        <img [src]="'assets/images/watermelon.svg'" alt="" />
+      </div>
     </div>
     <button class="spin-button">Spin</button>
   </div>
-  <button class="physical-button">Cliquez ici</button>
+  <button class="start-button">Start New Game</button>
 </div>
