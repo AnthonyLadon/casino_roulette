@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   imageRoll1: String = "assets/images/casino-chip.svg";
   imageRoll2: String = "assets/images/casino-chip.svg";
   imageRoll3: String = "assets/images/casino-chip.svg";
+  isCashOutButtonDisabled = false;
 
   ngOnInit() {
     this.casinoService.getSession().subscribe((response) => {
@@ -32,6 +33,12 @@ export class HomeComponent implements OnInit {
 
   startGame() {
     this.casinoService.startNewGame().subscribe((response) => {
+      const CashOutButton = document.getElementById("cashOut");
+      if (CashOutButton) {
+        CashOutButton.style["left"] = "0px";
+        CashOutButton.style["top"] = "0px";
+        this.isCashOutButtonDisabled = false;
+      }
       this.credits = response.credits;
       return this.credits;
     });
@@ -39,6 +46,12 @@ export class HomeComponent implements OnInit {
 
   roll() {
     this.casinoService.roll().subscribe((response) => {
+      const CashOutButton = document.getElementById("cashOut");
+      if (CashOutButton) {
+        CashOutButton.style["left"] = "0px";
+        CashOutButton.style["top"] = "0px";
+        this.isCashOutButtonDisabled = false;
+      }
       this.isWinning = false;
       this.isRolling1 = true;
       this.isRolling2 = true;
@@ -71,5 +84,37 @@ export class HomeComponent implements OnInit {
       }
       this.credits = 0;
     });
+  }
+
+  handleMouseOver() {
+    const randomNumber = Math.random();
+    const button = document.getElementById("cashOut");
+    if (button) {
+      button.style["right"] = "0px";
+      button.style["bottom"] = "0px";
+    }
+    if (randomNumber < 0.5) {
+      this.moveButton();
+    }
+    if (randomNumber < 0.4) {
+      this.disableButton();
+    }
+  }
+
+  moveButton(): void {
+    const distanceRight = Math.floor(Math.random() * 300) + 1;
+    const distanceTop = Math.floor(Math.random() * 300) + 1;
+    const button = document.getElementById("cashOut");
+    if (button) {
+      button.style["right"] = `${distanceRight}px`;
+      button.style["top"] = `${distanceTop}px`;
+    }
+  }
+
+  disableButton(): void {
+    const button = document.getElementById("cashOut");
+    if (button) {
+      this.isCashOutButtonDisabled = true;
+    }
   }
 }

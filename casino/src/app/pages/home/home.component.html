@@ -10,7 +10,15 @@
       <p>
         Wallet: <span>{{ wallet }} $</span>
       </p>
-      <button (click)="cashOut()">Cash Out</button>
+      <button
+        (mouseover)="handleMouseOver()"
+        (click)="cashOut()"
+        id="cashOut"
+        [class.direction]=""
+        [disabled]="isCashOutButtonDisabled"
+      >
+        Cash Out
+      </button>
     </div>
   </div>
 
