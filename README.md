@@ -28,7 +28,7 @@ Depuis le dossier 'casino'
 
 Pour voir l'application [Casino](http://localhost:4200).
 
-# The objectives of this exercise:
+# What were the objectives of this exercise:
 
 Jackpot! You've landed a summer gig in Las Vegas! Unfortunately, it's 2020, and the casinos are closed due to COVID-19. Your boss wants to move some of the business online and asks you to build a full-stack app — a simple slot machine game, with a little twist. Build it to ensure that the house always wins!
 
@@ -66,10 +66,3 @@ There is a CASH OUT button on the screen, but there's a twist there as well.
   - If the user wins the round, their session credit is increased by the amount from the server response, else it is deducted by 1.
   - Include a button on the screen that says "CASH OUT", but when the user hovers it, there is a 50% chance that the button moves in a random direction by 300px, and a 40% chance that it becomes unclickable (this roll should be done on the client-side). If they succeed to hit it, credits from the session are moved to their account.
 - Write tests for your business logic
-
-### Evaluation Criteria
-
-- Completeness: did you complete the features as briefed? This is important but it is only one aspect of your evaluation.
-- Correctness: Does the solution perform in sensible, thought-out ways?
-- Maintainability: is the code written in a clean, maintainable way?
-- Testing: was the system adequately tested?
