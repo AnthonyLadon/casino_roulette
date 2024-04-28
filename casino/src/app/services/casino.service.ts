@@ -27,6 +27,8 @@ export class CasinoService {
   }
 
   getCashOut() {
-    return this.http.get(`${this.urlBase}/cash-out`, { withCredentials: true });
+    return this.http.get<any>(`${this.urlBase}/cash-out`, {
+      withCredentials: true,
+    });
   }
 }

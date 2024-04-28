@@ -7,24 +7,32 @@
     </div>
     <h1>Welcome to the Casino!</h1>
     <div class="wallet">
-      <p>Wallet: <span>12 $</span></p>
+      <p>
+        Wallet: <span>{{ wallet }} $</span>
+      </p>
       <button (click)="cashOut()">Cash Out</button>
     </div>
   </div>
 
-  <div class="slot-machine-container">
+  <div class="slot-machine-container" [class.winner]="isWinning">
     <div class="rolls">
-      <div class="roll">
-        <img [src]="'assets/images/casino-chip.svg'" alt="" />
+      <div class="roll" [class.spin]="isRolling1">
+        <img [src]="imageRoll1" alt="Roll image" />
       </div>
-      <div class="roll">
-        <img [src]="'assets/images/casino-chip.svg'" alt="" />
+      <div class="roll" [class.spin]="isRolling2">
+        <img [src]="imageRoll2" alt="Roll image" />
       </div>
-      <div class="roll">
-        <img [src]="'assets/images/casino-chip.svg'" alt="" />
+      <div class="roll" [class.spin]="isRolling3">
+        <img [src]="imageRoll3" alt="Roll image" />
       </div>
     </div>
-    <button class="spin-button" (click)="roll()">Spin</button>
+    <!-- Spin button condition -->
+    <div *ngIf="credits !== 0 && !isRolling3; else noCredits">
+      <button class="spin-button" (click)="roll()">Spin</button>
+    </div>
+    <ng-template #noCredits>
+      <button class="spin-button">Spin</button></ng-template
+    >
   </div>
   <button class="start-button" (click)="startGame()">Start New Game</button>
 </div>

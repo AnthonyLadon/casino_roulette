@@ -2,9 +2,7 @@ const initialCredits = parseInt(process.env.INITIAL_USER_CREDIT);
 const { StatusCodes } = require("http-status-codes");
 
 const startGame = (req, res) => {
-  if (req.session.credits < 10 || !req.session.credits) {
-    req.session.credits = initialCredits;
-  }
+  req.session.credits = initialCredits;
   const credits = req.session.credits;
   req.session.save();
   res.json({ credits });
@@ -63,7 +61,7 @@ const roll = async (req, res) => {
       req.session.credits += creditsWon;
     }
 
-    const { credits } = req.session;
+    const credits = req.session.credits;
 
     res.status(StatusCodes.OK).json({ result, credits, creditsWon, isWining });
   } catch (error) {
@@ -72,9 +70,17 @@ const roll = async (req, res) => {
 };
 
 const cashOut = async (req, res) => {
-  credits = req.session.credits;
-  // TODO logique pour transfer les crédits dans la base de données de l'utilisateur
-  res.json({ credits });
+  try {
+    let wallet = req.session.credits;
+    req.session.credits = 0; // reset credits
+    let credits = req.session.credits;
+
+    res.status(StatusCodes.OK).json({ credits, wallet });
+
+    // TODO logique pour transfer les crédits dans la base de données de l'utilisateur
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
 };
 
 module.exports = {
