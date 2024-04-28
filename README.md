@@ -1,4 +1,34 @@
-### Objective
+# Voici _Casino_, une application Node / Angular
+
+## Pour installer et tester le projet
+
+Depuis un terminal, cloner le projet
+
+`git clone https://github.com/AnthonyLadon/casino_roulette.git`
+
+Se placer dans le repertoire du projet
+
+` cd casino_roulette`
+
+### Installer les dépendances
+
+Depuis le dossier 'backend' & depuis le dossier 'casino' (frontend):
+
+` npm install`
+
+### Lancer le projet
+
+Depuis le dossier 'backend'
+
+` npm run dev`
+
+Depuis le dossier 'casino'
+
+` ng serve`
+
+Pour voir l'application [Casino](http://localhost:4200).
+
+# The objectives of this exercise:
 
 Jackpot! You've landed a summer gig in Las Vegas! Unfortunately, it's 2020, and the casinos are closed due to COVID-19. Your boss wants to move some of the business online and asks you to build a full-stack app — a simple slot machine game, with a little twist. Build it to ensure that the house always wins!
 
@@ -43,11 +73,3 @@ There is a CASH OUT button on the screen, but there's a twist there as well.
 - Correctness: Does the solution perform in sensible, thought-out ways?
 - Maintainability: is the code written in a clean, maintainable way?
 - Testing: was the system adequately tested?
-
-### CodeSubmit
-
-Please organize, design, test, and document your code as if it were going into production - then push your changes to the main branch. After you have pushed your code, you may submit the assignment on the assignment page.
-
-All the best and happy coding,
-
-The Airplan Team
