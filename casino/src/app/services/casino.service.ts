@@ -1,11 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { apiUrlBase } from "../environements";
 
 @Injectable({
   providedIn: "root",
 })
 export class CasinoService {
-  private urlBase = "http://localhost:3000";
+  private urlBase = apiUrlBase;
+
   constructor(private http: HttpClient) {}
 
   getSession() {
