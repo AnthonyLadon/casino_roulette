@@ -18,7 +18,7 @@
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
     border-radius: 15px;
-    background: rgba(203, 127, 20, 0.623);
+    background: $background-color-1-transparent;
     box-shadow: 0 8px 32px 0 rgba(249, 249, 171, 0.216);
     backdrop-filter: blur(9px);
     -webkit-backdrop-filter: blur(3px);
@@ -37,13 +37,13 @@
     font-size: 3rem;
     margin-bottom: 1rem;
     color: $primary-color;
-    text-shadow: 2px 2px 20px rgb(213, 144, 144);
+    text-shadow: 2px 2px 20px $shadow-color;
   }
   .wallet {
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
     border-radius: 15px;
-    background: rgba(203, 127, 20, 0.623);
+    background: $background-color-1-transparent;
     box-shadow: 0 8px 32px 0 rgba(249, 249, 171, 0.216);
     backdrop-filter: blur(9px);
     -webkit-backdrop-filter: blur(3px);
@@ -62,7 +62,7 @@
       padding: 0.5rem 1rem;
       font-size: 1.2rem;
       border-radius: 15px;
-      background: rgb(203, 127, 20);
+      background: $background-color-1;
       box-shadow: 0 8px 32px 0 rgba(249, 249, 171, 0.216);
       backdrop-filter: blur(9px);
       -webkit-backdrop-filter: blur(3px);
@@ -92,7 +92,7 @@
   padding: 2rem;
   border-radius: 15px;
   margin: 12rem 8rem 8rem 8rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: $background-color-2-glass;
   box-shadow: 0 8px 32px 0 rgba(249, 249, 171, 0.216);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);

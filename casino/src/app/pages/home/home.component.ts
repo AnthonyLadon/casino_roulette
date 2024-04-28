@@ -27,7 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.casinoService.getSession().subscribe((response) => {
-      this.sessionData = response;
+      this.credits = response.credits;
+      this.wallet = response.wallet;
     });
   }
 
@@ -82,7 +83,7 @@ export class HomeComponent implements OnInit {
       if (response.wallet !== 0) {
         this.wallet += response.wallet;
       }
-      this.credits = 0;
+      this.credits = response.credits;
     });
   }
 
