@@ -3,7 +3,17 @@ const gameService = require("../services/gameService");
 const catchAsync = require("../helpers/catchAsync");
 
 const getSessionData = (req, res) => {
-  res.json(req.session);
+  if (!req.session.credits) {
+    req.session.credits = 0;
+  }
+  if (!req.session.wallet) {
+    req.session.wallet = 0;
+  }
+  const credits = req.session.credits;
+  const wallet = req.session.wallet;
+
+  console.log(req.session.wallet);
+  res.json({ credits, wallet });
 };
 
 const getGame = async (req, res) => {
@@ -24,8 +34,11 @@ const roll = catchAsync(async (req, res) => {
 });
 
 const cashOut = catchAsync(async (req, res) => {
-  const credits = gameService.cashOut(req, res);
-  res.status(StatusCodes.OK).json({ credits });
+  const response = gameService.cashOut(req, res);
+  const credits = response.credits;
+  const wallet = response.wallet;
+
+  res.status(StatusCodes.OK).json({ credits, wallet });
 });
 
 // ****** Export des Controllers ******************/

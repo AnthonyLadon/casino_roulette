@@ -4,8 +4,12 @@ const { StatusCodes } = require("http-status-codes");
 const startGame = (req, res) => {
   req.session.credits = initialCredits;
   const credits = req.session.credits;
+  if (!req.session.wallet) {
+    req.session.wallet = 0;
+  }
+  const wallet = req.session.wallet;
   req.session.save();
-  res.json({ credits });
+  res.json({ credits, wallet });
 };
 
 const symbols = {
@@ -71,9 +75,9 @@ const roll = async (req, res) => {
 
 const cashOut = async (req, res) => {
   try {
-    let wallet = req.session.credits;
+    const wallet = req.session.credits;
     req.session.credits = 0; // reset credits
-    let credits = req.session.credits;
+    const credits = req.session.credits;
 
     res.status(StatusCodes.OK).json({ credits, wallet });
 

@@ -11,7 +11,12 @@ const app = express();
 const PORT = process.env.PORT;
 const sessionSecret = process.env.SECRET_KEY;
 
-app.use(cors({ origin: "http://localhost:4200", credentials: true }));
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
