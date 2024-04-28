@@ -12,6 +12,7 @@ const startGame = (req, res) => {
   res.json({ credits, wallet });
 };
 
+// initiate symbols/values
 const symbols = {
   cherry: 10,
   lemon: 20,
@@ -31,21 +32,21 @@ const generateRandomRollResult = () => {
 
 const roll = async (req, res) => {
   try {
+    let creditsWon = 0;
+
     if (req.session.credits < 1) {
       throw new Error("Not enough credits");
     }
 
-    const result = await generateRandomRollResult();
+    const result = generateRandomRollResult();
     req.session.credits -= 1;
-
-    let creditsWon = 0;
 
     if (req.session.credits >= 40 && req.session.credits < 60) {
       const isWining = result.every((symbol) => symbol === result[0]);
       if (isWining) {
         const shouldReroll = Math.random() >= 0.7;
         if (shouldReroll) {
-          result = await generateRandomRollResult();
+          result = generateRandomRollResult();
         }
       }
     } else if (req.session.credits >= 60) {
@@ -53,7 +54,7 @@ const roll = async (req, res) => {
       if (isWining) {
         const shouldReroll = Math.random() >= 0.4;
         if (shouldReroll) {
-          result = await generateRandomRollResult();
+          result = generateRandomRollResult();
         }
       }
     }
@@ -81,7 +82,7 @@ const cashOut = async (req, res) => {
 
     res.status(StatusCodes.OK).json({ credits, wallet });
 
-    // TODO logique pour transfer les crédits dans la base de données de l'utilisateur
+    // TODO logique pour transferer les crédits en base de données
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }

@@ -49,9 +49,9 @@ export class HomeComponent implements OnInit {
     this.casinoService.roll().subscribe((response) => {
       const CashOutButton = document.getElementById("cashOut");
       if (CashOutButton) {
-        CashOutButton.style["left"] = "0px";
+        CashOutButton.style["left"] = "0px"; // reset button position & disable while rolling
         CashOutButton.style["top"] = "0px";
-        this.isCashOutButtonDisabled = false;
+        this.isCashOutButtonDisabled = true;
       }
       this.isWinning = false;
       this.isRolling1 = true;
@@ -74,6 +74,7 @@ export class HomeComponent implements OnInit {
         this.imageRoll3 = `assets/images/${response.result[2]}.svg`;
         this.credits = response.credits;
         this.isWinning = response.isWining;
+        this.isCashOutButtonDisabled = false;
       }, 3000);
     });
   }

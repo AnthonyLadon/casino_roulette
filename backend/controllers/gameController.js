@@ -41,8 +41,7 @@ const cashOut = catchAsync(async (req, res) => {
   res.status(StatusCodes.OK).json({ credits, wallet });
 });
 
-// ****** Export des Controllers ******************/
-
+//Export of the functions
 module.exports = {
   getSessionData,
   getGame,
