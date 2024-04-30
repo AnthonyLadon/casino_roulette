@@ -77,12 +77,12 @@ const roll = async (req, res) => {
 const cashOut = async (req, res) => {
   try {
     const wallet = req.session.credits;
-    req.session.credits = 0; // reset credits
+    req.session.credits = 0;
     const credits = req.session.credits;
 
-    res.status(StatusCodes.OK).json({ credits, wallet });
-
     // TODO logique pour transferer les crédits en base de données
+
+    res.status(StatusCodes.OK).json({ credits, wallet });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
