@@ -19,11 +19,24 @@ const getGame = async (req, res) => {
 };
 
 const roll = catchAsync(async (req, res) => {
-  gameService.roll(req, res);
+  try {
+    const credits = req.session.credits;
+    if (!credits) {
+      throw new Error("Credits not provided");
+    }
+    const result = await gameService.roll(req, res);
+    res.status(StatusCodes.OK).json({ result });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
 });
 
 const cashOut = catchAsync(async (req, res) => {
-  gameService.cashOut(req, res);
+  const response = gameService.cashOut(req, res);
+  const credits = response.credits;
+  const wallet = response.wallet;
+
+  res.status(StatusCodes.OK).json({ credits, wallet });
 });
 
 //Export of the functions

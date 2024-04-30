@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "casino backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server",
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anthony Ladon",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "http-status-codes": "^2.3.0",
+    "install": "^0.13.0",
+    "mocha": "^10.4.0",
+    "npm": "^10.6.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "nodemon": "^3.1.0"
+  }
+}
