@@ -1,4 +1,3 @@
-const { StatusCodes } = require("http-status-codes");
 const gameService = require("../services/gameService");
 const catchAsync = require("../helpers/catchAsync");
 
@@ -15,15 +14,15 @@ const getSessionData = (req, res) => {
 };
 
 const getGame = async (req, res) => {
-  gameService.startGame(req, res);
+  await gameService.startGame(req, res);
 };
 
 const roll = catchAsync(async (req, res) => {
-  gameService.roll(req, res);
+  await gameService.roll(req, res);
 });
 
 const cashOut = catchAsync(async (req, res) => {
-  gameService.cashOut(req, res);
+  await gameService.cashOut(req, res);
 });
 
 //Export of the functions
