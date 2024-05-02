@@ -26,7 +26,9 @@ Depuis le dossier 'casino'
 
 ` ng serve`
 
-Pour voir l'application [Casino](http://localhost:4200).
+Pour voir l'application dans votre navigateur [localhost port 4200](http://localhost:4200).
+
+Pour tester le [site en production](https://anthonyladon.github.io/play_casino_roulette/) (frontend hebergé sur github pages / backend sur o2switch)
 
 # What were the objectives of this exercise:
 
